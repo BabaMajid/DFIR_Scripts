@@ -2,7 +2,6 @@
 
 REM This scripts collects basic artifacts from a windows OS and saves them in text file seperately.
 
-
 set host=%COMPUTERNAME%
 
 REM Creates directory by hostname in current working directory.
@@ -12,7 +11,6 @@ mkdir %cd%\evidence-%host%
 REM Lists all local users and save in users.txt file.
 
 powershell "Get-LocalUser | select *" > %cd%\evidence-%host%\users.txt
-
 
 echo  Members in Administrator Group >> %cd%\evidence-%host%\groups.txt
 echo:
@@ -50,10 +48,35 @@ REM List autostart programs(winlogon entries, boot execute,logon startup and aut
 
 %cd%\Tools\Autorunsc.exe -accepteula  wlb -o %cd%\evidence-%host%\autostart.txt
 
-REM Copy all prefetch files to a newly created prefetch folder in our evidence directory.
+REM List Firewall state for all profiles and export current firewall configurations. But his is hardly used during investigation.
+
+netsh advfirewall show allprofiles > %cd%\evidence-%host%\firewall-state.txt && netsh advfirewall export %cd%\evidence-%host%\firewall-config.wfw
+
+REM List Network Connections along with executables
+
+netstat -nfqb > %cd%\evidence-%host%\netstat.txt
+
+REM Copy all prefetch files to a newly created prefetch folder in our evidence directory. Prefetching is disabled on windows OS by default.
 
 mkdir %cd%\evidence-%host%\prefetch
 copy C:\windows\prefetch\*.pf %cd%\evidence-%host%\prefetch
+
+REM Copy event logs only security.
+
+mkdir %cd%\evidence-%host%\Logs
+copy c:\windows\system32\winevt\logs\* %cd%\evidence-%host%\Logs\
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
