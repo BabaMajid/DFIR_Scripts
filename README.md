@@ -1,5 +1,5 @@
 # DFIR_Scripts
-I have encountered few cases where I had to gather basic info from a machine like list of users, network connection, group membership etc. Everytime I either had to goto my EDR or need access to system. To cover this I have created a simple windows script that will do the task and save output in txt format.Currently it onlysupports windows but I will be adding Linux script too once finished with this windows.T  
+I have encountered few cases where I had to gather basic info from a machine like list of users, network connection, group membership etc. Everytime I either had to goto my EDR or need access to system. To cover this I have created a simple windows script that will do the task and save output in txt format.Currently it only supports windows but I will be adding Linux script too once finished with this windows.T  
 
 winIR.bat can gather below details from a system. To do this you will need admin and powershell access on machine.
 
