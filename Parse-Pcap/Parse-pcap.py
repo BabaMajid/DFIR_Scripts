@@ -73,7 +73,7 @@ if __name__ == '__main__':
         create_files(path_new)
     else:
         print('Path is incorrect please re-run and enter again!')
-    os.remove(path_new)
+   os.remove(path_new)
 
 
 
